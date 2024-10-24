@@ -41,7 +41,7 @@ by removing it from the bridge via the Hue app. Orphaned bulbs (configured to co
 ### Hue dimmer switch
 With [one](./324131092621.md) of the [two](./929002398602.md) Hue Dimmer switches it is possible to put the bulbs into a factory reset.
 
-1. Power-supply the bulb
+1. Powercycle the bulb (if the bulb is on for too long this procedure might not work)
 2. Bring the dimmer switch next to the bulb, as close as possible
 3. Hold the I/On and 0/Off button pressed simultaneously for 10 to 12 seconds until…
 4. The bulb flashes a couple of times. Don't release the buttons until the last flash + a safety second
@@ -89,6 +89,15 @@ Rules:
 - When setting \`hue_power_on_behavior\` = \`on\`, any not provided values will be reset to their factory defaults
 
 Note: if \`hue_power_on_behavior\` is set to \`off\`, then the only way to turn the bulb on will be through a paired smart device (see pairing above). You will NOT be able to turn the bulb on by sequentially switching power on and off.    
+`;
+        }
+    },
+    ikeaLight: (definition) => {
+        if (definition.vendor === 'IKEA' && definition.exposes.find((e) => e.type === 'light')) {
+            return `
+## Transition
+IKEA lights only support transitions on 1 attribute at a time.
+If you would for example change the color temperature and brightness in 1 command, the color temperature transition is ignored.
 `;
         }
     },
